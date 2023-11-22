@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main()
+{
+    struct acc{
+    unsigned int account;// account number
+    char name[30];   // account name
+    double balance; // account balance
+    };
+    
+    struct acc a;
+    
+    FILE *fp;
+    
+    if ( (fp=fopen("client.dat","a") )==NULL) {
+        puts ("File could not be opened ");
+    }
+    else{
+        puts ("Enter the account number, name, and balance. ");
+         puts ("Enter (keyboard) EOF to end the input");
+        printf("?");
+        scanf("%d %s %lf",&a.account,a.name,&a.balance);
+        
+        
+        while(!feof(stdin)){
+            fprintf(fp,"%d %s %.2f\n",a.account,a.name,a.balance);
+            printf("?");
+            scanf("%d %s %lf",&a.account,a.name,&a.balance);
+        }
+        fclose(fp);
+    }
+
+    return 0;
+}
